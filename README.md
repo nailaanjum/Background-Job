@@ -57,7 +57,7 @@ Step: wait-5-seconds
 
 **Screenshot: Stage 1 — Inngest Dashboard showing `say-hello` completed successfully**
 
-![Stage 1 — Inngest Dashboard](inngest_dashboard.png)
+![Stage 1 — Inngest Dashboard](images/inngest_dashboard.png)
 
 ---
 
@@ -107,19 +107,19 @@ Report status: done
 
 **Screenshot: Stage 2 — POST `/reports` returning `202 Accepted` with `pending` status**
 
-![Stage 2 — 202 POST return](202_response.png)
+![Stage 2 — 202 POST return](images/202_response.png)
 
 ### Proof Screenshot 2
 
 **Screenshot: Stage 2 — First GET request showing report status `pending`**
 
-![Stage 2 — GET Request_Pending](pending.png)
+![Stage 2 — GET Request_Pending](images/pending.png)
 
 ### Proof Screenshot 3
 
 **Screenshot: Stage 2 — Second GET request showing report status `done` with the generated result**
 
-![Stage 2 — GET Request_Done](done.png)
+![Stage 2 — GET Request_Done](images/done.png)
 
 This demonstrates **polling** and **eventual consistency**: the client first sees `pending`, and later sees `done`.
 
@@ -159,13 +159,13 @@ The dashboard can therefore show the failed run and its retry attempts.
 
 **Screenshot: Stage 3 — `make-report` failed on the first attempt and retried**
 
-![Stage 3 — make-report_retries](retries.png)
+![Stage 3 — make-report_retries](images/retries.png)
 
 ### Proof Screenshot 2
 
 **Screenshot: Stage 3 — `make-report` showing 3 total attempts and final Failed status**
 
-![Stage 3 — make-report_retries](retries.png)
+![Stage 3 — make-report_retries](images/retries.png)
 
 ### Input Validation
 
@@ -189,7 +189,7 @@ No Inngest event is sent for this invalid request.
 
 **Screenshot: Stage 3 — POST `/reports` with missing topic returning `400 Bad Request`**
 
-![Stage 3 — POST-report_bad-request](validation.png)
+![Stage 3 — POST-report_bad-request](images/validation.png)
 
 ---
 
@@ -233,13 +233,13 @@ Schedule: Every minute
 
 **Screenshot: Stage 4 — Inngest Dashboard showing the first `heartbeat` run**
 
-![Stage 4 — run_heartbeat](heartbeat.png)
+![Stage 4 — run_heartbeat](images/heartbeat.png)
 
 ### Proof Screenshot 2
 
 **Screenshot: Stage 4 — Inngest Dashboard showing another `heartbeat` run one minute later**
 
-![Stage 4 — run_heartbeat](heartbeat.png)
+![Stage 4 — run_heartbeat](images/heartbeat.png)
 
 ### Cron Examples
 
@@ -352,7 +352,7 @@ with:
 
 **Proof Screenshot: Stage 5 — POST `/reports` returning `202 Accepted`**
 
-![Stage 5 — POST/reports](202_response.png)
+![Stage 5 — POST/reports](images/202_response.png)
 
 ---
 
@@ -376,7 +376,7 @@ The report is initially:
 
 **Proof Screenshot: Stage 5 — First poll showing `pending`**
 
-![Stage 5 — first_poll_pending](pending.png)
+![Stage 5 — first_poll_pending](images/pending.png)
 
 ---
 
@@ -401,7 +401,7 @@ returns:
 
 **Proof Screenshot: Stage 5 — Second poll showing `done` and the result**
 
-![Stage 5 — second_poll_done](done.png)
+![Stage 5 — second_poll_done](images/done.png)
 
 ---
 
@@ -419,7 +419,7 @@ The screenshots included with this project demonstrate:
 
 **Dashboard Screenshot: Stage 5 — Inngest Dashboard showing project runs**
 
-![Stage 5 — inngest_dashboard_all_projects](dashboard_final.png)
+![Stage 5 — inngest_dashboard_all_projects](images/dashboard_final.png)
 
 ---
 
