@@ -55,6 +55,12 @@ class ReportRequest(BaseModel):
 @app.post("/reports", status_code=202)
 async def create_report(request: ReportRequest):
 
+    if not request.topic:
+        raise HTTPException(
+            status_code=400,
+            detail="Topic is required",
+        )
+
     # Create a unique ID for this report
     report_id = str(uuid.uuid4())
 
@@ -90,6 +96,7 @@ async def create_report(request: ReportRequest):
 @inngest_client.create_function(
     fn_id="make-report",
     trigger=inngest.TriggerEvent(event="report/requested"),
+     retries=2,
 )
 async def make_report(ctx: inngest.Context):
 
@@ -104,6 +111,9 @@ async def make_report(ctx: inngest.Context):
 
     # Step 2: build and save the report
     async def build_report():
+        if topic == "fail":
+            raise Exception("The report oven is broken!")
+
         result = f"Report generated about {topic}."
 
         reports[report_id] = {
