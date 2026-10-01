@@ -132,6 +132,33 @@ async def make_report(ctx: inngest.Context):
 
 
 # -------------------------
+# Stage 4: Cron heartbeat
+# -------------------------
+@inngest_client.create_function(
+    fn_id="heartbeat",
+    trigger=inngest.TriggerCron(cron="* * * * *"),
+)
+async def heartbeat(ctx: inngest.Context):
+    pending = 0
+    done = 0
+    failed = 0
+
+    for report in reports.values():
+        if report["status"] == "pending":
+            pending += 1
+        elif report["status"] == "done":
+            done += 1
+        elif report["status"] == "failed":
+            failed += 1
+
+    print(
+        f"Reports: pending={pending}, done={done}, failed={failed}"
+    )
+
+    return f"Reports: pending={pending}, done={done}, failed={failed}"
+
+
+# -------------------------
 # Stage 2: GET /reports/{id}
 # -------------------------
 
@@ -159,6 +186,7 @@ inngest.fast_api.serve(
     [
         say_hello,
         make_report,
+        heartbeat,
     ],
 )
 
